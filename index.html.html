@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyecto 33 - Angelo</title>
+<style>
+body{margin:0;background:#03110e;color:white;font-family:Arial,sans-serif;overflow:hidden}
+.screen{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;box-sizing:border-box}
+.hidden{display:none}
+.green{color:#9fdc2e}
+.red{color:#ff5050}
+.btn{background:#9fdc2e;color:#000;border:none;padding:15px 30px;font-size:1.1rem;border-radius:8px;cursor:pointer;margin-top:25px;font-weight:bold;}
+.card{max-width:1000px;margin:30px auto;padding:30px;background:rgba(0,0,0,.45);border:1px solid #2e7d5a;}
+.content{height:100vh;overflow:auto;padding:20px;box-sizing:border-box}
+p{line-height:1.7;font-size:1.15rem}
+.fade{animation:fadeIn 2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.black{background:black}
+.small{font-size:.9rem;opacity:.7;margin-top:20px}
+</style>
+</head>
+<body>
+
+<div id="intro" class="screen">
+<h2 id="msg"></h2>
+</div>
+
+<div id="access" class="screen hidden">
+<h1 class="green">ACCESO CONCEDIDO</h1>
+<h2>Bienvenido al Proyecto 33</h2>
+<button class="btn" onclick="startExperience()">CONTINUAR 🏁</button>
+</div>
+
+<div id="blackScreen" class="screen hidden black"></div>
+
+<div id="titleScreen" class="screen hidden">
+<h1 class="green fade" style="font-size:3rem">FELIZ CUMPLEAÑOS ANGELO</h1>
+</div>
+
+<div id="letter" class="content hidden">
+<div class="card">
+<h1>FELIZ CUMPLEAÑOS <span class="green">ANGELO</span></h1>
+
+<p>Expresarme no es lo mío, pero en esta ocasión me salió fácil.</p>
+<p>Angel, Angelito, Angelo, ¿qué te puedo decir? Te quiero mucho; eres la única persona que en verdad conoce a esta loca en todas sus presentaciones, eso no sé si sea bueno o malo, pero me agrada que así sea.</p>
+<p>Eres un hombre muy inteligente, apasionado, dedicado cuando algo te gusta, constante, algo irresponsable financieramente hablando con tus gastos hormiga que no son muy hormiga; en fin, si sigo describiéndote me llevo mil renglones.</p>
+<p>Hoy en tu día, tu pumpe 20, te quiero desear mucho éxito, amor, money claro que sí, SALUD que es lo que más te falta, momentos inolvidables, trabajo y que todas tus metas y sueños pasen de la imaginación y las palabras a la realidad; recuerda: las posibilidades nunca son cero.</p>
+<p>Te doy las gracias por estar en mi vida, por ser mi mejor amigo, qué digo amigo, mi hermano; gracias por estar ahí cuando lo necesitaba, en mis momentos más delulu y en mis chilladeras de 2 segundos. Gracias infinitas; en verdad si un día necesitas unos riñones y los míos son compatibles contigo, sin pensarlo te los daría; en verdad te debo muchas y te quiero muchísimo.</p>
+<p>Felices 2 décadas mi amigo, espero poder continuar diciéndote feliz cumpleaños hasta que seamos unos viejitos todos feos y arrugados pero felices.</p>
+
+<h2 class="green">🏁 Este año sí 💚</h2>
+
+<div style="text-align:center;margin-top:40px;">
+<button class="btn" onclick="showScreen('screen1')">CONTINUAR ➜</button>
+</div>
+</div>
+</div>
+
+<div id="screen1" class="screen hidden">
+<h1 class="green">ACTUALIZAR ESTADO DEL PROYECTO 33</h1>
+<button class="btn" onclick="startFinalSequence()">ACTUALIZAR</button>
+</div>
+
+<div id="screen2" class="screen hidden">
+<h1>Cargando...</h1>
+<p>Analizando posibilidades matemáticas...</p>
+</div>
+
+<div id="screen3" class="screen hidden">
+<h1 class="green">ESTADO ACTUAL DEL PROYECTO 33</h1>
+<h2>Seguimos esperando.</h2>
+<div id="belief" style="opacity:0;transition:opacity 1.5s;">
+<h2>Pero nunca hemos dejado de creer.</h2>
+</div>
+</div>
+
+<div id="screen4" class="screen hidden">
+<h1 class="green fade">Las posibilidades nunca son cero.</h1>
+<h2>🏁💚</h2>
+<p class="small">Proyecto 33</p>
+</div>
+
+<!-- Cambia los nombres por tus archivos reales -->
+<audio id="radio" src="all-the-time-you-have-to-leave-a-space.mp3"></audio>
+<audio id="music" src="mixkit-silent-descent-614.mp3" loop></audio>
+
+<script>
+const steps=[
+"INICIANDO ESCANEO...",
+"ESCANEO COMPLETADO",
+"IDENTIDAD VERIFICADA",
+"ALONSISTA DETECTADO",
+"NIVEL DE FE EN LA 33: 100%",
+"BUSCANDO EVIDENCIA RACIONAL...",
+"ERROR: NO SE ENCONTRÓ NINGUNA."
+];
+
+let i=0;
+const msg=document.getElementById("msg");
+
+function run(){
+ if(i<steps.length){
+   msg.textContent=steps[i];
+   if(i===6) msg.classList.add("red");
+   i++;
+   setTimeout(run,i===7?4000:3000);
+ } else {
+   intro.classList.add("hidden");
+   access.classList.remove("hidden");
+ }
+}
+
+function hideAll(){
+["intro","access","blackScreen","titleScreen","letter","screen1","screen2","screen3","screen4"]
+.forEach(id=>document.getElementById(id).classList.add("hidden"));
+}
+
+function startExperience(){
+ hideAll();
+ document.getElementById("radio").play();
+ document.getElementById("radio").onended=()=>{
+   document.getElementById("blackScreen").classList.remove("hidden");
+   setTimeout(()=>{
+      document.getElementById("music").play();
+      hideAll();
+      document.getElementById("titleScreen").classList.remove("hidden");
+      setTimeout(()=>{
+        hideAll();
+        document.getElementById("letter").classList.remove("hidden");
+        document.body.style.overflow="auto";
+      },2000);
+   },2000);
+ };
+}
+
+function showScreen(id){
+ hideAll();
+ document.getElementById(id).classList.remove("hidden");
+ document.body.style.overflow="hidden";
+}
+
+function startFinalSequence(){
+ showScreen("screen2");
+ setTimeout(()=>{
+   showScreen("screen3");
+   setTimeout(()=>{
+      document.getElementById("belief").style.opacity="1";
+      setTimeout(()=>{
+        showScreen("screen4");
+      },3000);
+   },2000);
+ },3000);
+}
+
+run();
+</script>
+</body>
+</html>
